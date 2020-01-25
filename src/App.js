@@ -30,7 +30,7 @@ function App({ starWars, fetchStarWarsRequest, confirmFetchRequest }) {
         <Button onClick={handleConfirmClick}>Confirm</Button>
       </div>
 
-      <Button onClick={handleFetchClick}>Load more</Button>
+      <Button onClick={handleFetchClick}>Load people</Button>
     </div>
   );
 }

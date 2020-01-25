@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import styled from 'styled-components';
 import { connect } from 'react-redux';
 import { fetchStarWarsRequest, confirmFetchRequest } from './actions';
 import './App.css';
@@ -26,13 +27,30 @@ function App({ starWars, fetchStarWarsRequest, confirmFetchRequest }) {
       </div>
 
       <div className="modal" style={modalOpen ? {} : { display: 'none' }}>
-        <button onClick={handleConfirmClick}>Confirm</button>
+        <Button onClick={handleConfirmClick}>Confirm</Button>
       </div>
 
-      <button onClick={handleFetchClick}>Load more</button>
+      <Button onClick={handleFetchClick}>Load more</Button>
     </div>
   );
 }
+
+const Button = styled.button`
+  cursor: pointer;
+  padding: 0.75em 1.25em;
+  border: 2px solid navy;
+  color: navy;
+  font-size: 14px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: -1px;
+  background: white;
+
+  &:hover {
+    background-color: navy;
+    color: white;
+  }
+`;
 
 const mapStateToProps = state => ({
   starWars: state.starWars,

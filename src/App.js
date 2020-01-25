@@ -1,9 +1,21 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { connect } from 'react-redux';
-import { fetchStarWarsRequest } from './actions';
+import { fetchStarWarsRequest, confirmFetchRequest } from './actions';
 import './App.css';
 
-function App({ starWars, fetchStarWarsRequest }) {
+function App({ starWars, fetchStarWarsRequest, confirmFetchRequest }) {
+  const [modalOpen, setModalOpen] = useState(false);
+
+  const handleFetchClick = () => {
+    setModalOpen(true);
+    fetchStarWarsRequest();
+  };
+
+  const handleConfirmClick = () => {
+    confirmFetchRequest();
+    setModalOpen(false);
+  };
+
   return (
     <div className="App">
       <h1>Star Wars API</h1>
@@ -13,7 +25,11 @@ function App({ starWars, fetchStarWarsRequest }) {
         ))}
       </div>
 
-      <button onClick={fetchStarWarsRequest}>Load more</button>
+      <div className="modal" style={modalOpen ? {} : { display: 'none' }}>
+        <button onClick={handleConfirmClick}>Confirm</button>
+      </div>
+
+      <button onClick={handleFetchClick}>Load more</button>
     </div>
   );
 }
@@ -24,6 +40,7 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = dispatch => ({
   fetchStarWarsRequest: () => dispatch(fetchStarWarsRequest()),
+  confirmFetchRequest: () => dispatch(confirmFetchRequest()),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(App);

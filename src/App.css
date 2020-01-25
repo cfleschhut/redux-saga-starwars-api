@@ -11,5 +11,13 @@
   left: 0;
   bottom: 0;
   right: 0;
-  background: hsla(0, 0%, 95%, 0.85);
+  margin: 10px;
+  background: hsla(0, 0%, 85%, 0.85);
+}
+
+.container {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 10px;
+  padding: 10px;
 }
